@@ -1,0 +1,34 @@
+title: "Subtle Gears"
+author: "Cole Howard"
+description: "Machine Learning on a Budget"
+#subheading: "Really cool blog about ... something"
+more: "read more"
+url: "http://uglyboxer.github.io"
+# baseurl: "/contrast" # comment out if in root directory
+
+comments:
+    disqus: "uglyboxer"
+#    isso: "comments.mysite.org"
+
+style:
+#    body: "whitesmoke"
+    padding: 33%
+    anchor: "#46f"
+    serif-heading: true
+    nav: "#181818"
+#    headline: "#06f"
+    description: "white"
+    article:
+        odd: "#ffffff"
+        even: "#222222"
+
+links:
+  - github: "https://github.com/uglyboxer/"
+  - twitter: "https://twitter.com/uglyboxer/"
+  - google-plus: "https://plus.google.com/+uglyboxer"
+
+
+paginate: 10
+excerpt_separator: "\n\n\n" # excerpt ends after two blank lines
+defaults: [{scope: {path: ""}, values: {layout: "default"}}, {scope: {path: "", type: "posts"}, values: {comments: true}}]
+gems: [jekyll-feed] # include feed plugin (supported by gh-pages)
