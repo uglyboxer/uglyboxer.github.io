@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Niklas Buschmann 2015 MIT <http://github.com/niklasbuschmann> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Machine Learning on a Budget">
+    <title> Nice, Neat Rows › Subtle Gears</title>
+    <link rel="canonical" href="http://uglyboxer.github.io/2015/11/16/vectorization.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <script src="//uglyboxer.disqus.com/embed.js" async></script>
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Subtle Gears</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/archive.html">Archive</a></li><span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/2015/11/16/vectorization.html">Nice, Neat Rows</a></h2>
+        <p><time datetime="2015-11-16T00:00:00-08:00">Nov 16, 2015</time> • </p>
+      </header>
+      <div>
+<p>So I failed to take notes.  Lesson learned.  It has been a hectic two weeks plying through a mess that I admittedly should not have made.  I should have continued iterating through the design only with a test firmly in hand at each step.  I didn’t and I paid the price.  Here is where I should pile up some epic story of failure and perseverance, littered with trials and tribulations, successes and pains.  But there is nothing so entertaining to be had in this venture, just a mess of spaghetti and a commit path just as wandering and even more useless.  So I’ll just say it:</p>
+
+<p>Test.</p>
+
+<p>Document.</p>
+
+<p>Repeat.</p>
+
+<p>(head slap)</p>
+
+<!--more-->
+
+<p>But, to give this post a point, I did come away with something more than the oh-so-obvious (but oh-so-important) advice above.  Where did it begin?  My original code was full of nested for loops in the brute force pursuit of updating each weight on the atomic level.  Backpropagation is a serious business and there isn’t much time for messing around, let’s update each weight individually.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">neuron</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">neurons</span><span class="p">):</span>
+                <span class="n">temp_err</span> <span class="o">=</span> <span class="mi">0</span>
+                <span class="k">for</span> <span class="n">j</span><span class="p">,</span> <span class="n">la_neuron</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">layer_ahead</span><span class="o">.</span><span class="n">neurons</span><span class="p">):</span>
+                    <span class="n">temp_err</span> <span class="o">+=</span> <span class="n">layer_ahead</span><span class="o">.</span><span class="n">neurons</span><span class="p">[</span><span class="n">j</span><span class="p">][</span><span class="s">"neuron"</span><span class="p">]</span><span class="o">.</span><span class="n">weights</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span>\
+                                <span class="n">layer_ahead</span><span class="o">.</span><span class="n">error_matrix</span><span class="p">[</span><span class="n">j</span><span class="p">]</span>
+                <span class="bp">self</span><span class="o">.</span><span class="n">error_matrix</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">mr_output</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">*</span>
+                                         <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="bp">self</span><span class="o">.</span><span class="n">mr_output</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">*</span> <span class="n">temp_err</span><span class="p">)</span></code></pre></figure>
+
+<p>Okay, the word ‘inelegant’ comes to mind, and quite possibly incorrect, but it was a valuable exploration for my own personally learning process.  A step that needed to be taken.  Something however was horribly broken in my code during this phase, it could well be this monstrosity.  So in my maddening spins and deep frustration I took a break and to reset my mind. I took a look at <a href="http://iamtrask.github.io/2015/07/12/basic-python-network/">this article</a> by I Am Trask.  (pause) Okay, now that I’m over the fact my ego has been dashed by some stranger and 11 lines of code.  Let’s ponder that for a moment … 11 freakin’ lines of code!  Okay, I’m totally over my ego.  That is amazing.  And completely beautiful.</p>
+
+<p>My reverie aside, in reading those 11 lines(!!!!) I had an epiphany.  My internal visualization of the weight space was wrong.  Or at least overly limited and not useful.  Let’s take a momentary step back in time.  When I wrote my first Perceptron and instilled it with what I thought was backpropagation at the time (I was wrong about that too, but that’s not what we’re here for right?), I had a single weight space that was taking input and passing it out (no real hidden layer).  The mental model I built around this was a weight space that precisely matched the input vector, an 8 x 8 matrix of greyscale values.  Now this was ridiculous of course for many reasons, not the least of which was the fact I as flattening the input vectors to begin with, but again …</p>
+
+<p>So my mental model was misguided, what else could I use?  Trask’s implementation was the key.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><span class="n">syn0</span> <span class="o">=</span> <span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">random</span><span class="p">((</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span> <span class="o">-</span> <span class="mi">1</span></code></pre></figure>
+
+<p>He is treating all of the weights across all the neurons in a layer as a single matrix!</p>
+
+<p>“cool visualization of that here”</p>
+
+<p>Each column represents a neuron, and each entry in that column a weight corresponding to an entry in the input vector.  Now, transpose that and matrix multiply against a ‘vertical’ input vector and you get …</p>
+
+<p>“cool visualization of that here” (cut me some slack, this is my homework project right now!)</p>
+
+<p>a vertical vector, each of whose entries are the scalar dot product of the columns of the weight matrix with the input vector.  But that is just equivalent to the output of that neuron!  So the resulting ‘vertical’ vector is the output of that layer.  Simple (hah!) linear algebra.</p>
+
+<p>Aside from allowing my brain to finally wrap around what was happening in a useful way, it provided an enormous speed boost.  Funny how going from nested to for loops to a single matrix multiplication, which numpy handles under the hood with our good friend C can be useful.  What originally took 6 hours (on the MNIST dataset) took 5 minutes!  Now if all refactorings can be that productive, I’ll be set.</p>
+
+<p>Notes on next steps for finnegan:</p>
+
+<ul>
+  <li>Obviously need a visualizations for all of this</li>
+  <li>A way to optimize the hyper-parameters, hopefully the viz will help guide the artist’s hand here</li>
+  <li>A blog post about Hinton’s Dropout method that I did add to the latest version</li>
+  <li>Regularization function for the weights to prevent over-fitting the training data (this has been another debacle of my personal design, I will re-approach from scratch with my head screwed on straight)</li>
+</ul>
+
+<p>Cheers and Happy Learning.</p>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+
+    <footer>
+      <span><a href="http://uglyboxer.github.io">Cole Howard</a></span>
+      <span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+      <span>&copy; 2015</span>
+    </footer>
+  </body>
+</html>

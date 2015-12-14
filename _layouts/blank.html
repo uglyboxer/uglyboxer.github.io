@@ -21,7 +21,7 @@
       {% unless site.style.headline %}<h1><a href="{{ site.baseurl }}/">{{ site.title }}</a></h1>{% endunless %}
       <nav>
         <ul>
-          <li><a href="{{ site.baseurl }}/">Home</a></li>{% for node in site.pages %}{% if node.title %}<li><a href="{{ node.url | prepend: site.baseurl }}"{% if page.url == node.url %} id="selected"{% endif %}>{{ node.title }}</a></li>{% endif %}{% endfor %}
+          <li><a href="{{ site.baseurl }}/">Home</a></li>{% for node in site.pages %}{% if node.title %}<li><a href="{{ node.url | prepend: site.baseurl }}"{% if page.url == node.url %} id="selected"{% endif %}>{{ node.title }}</a></li>{% endif %}{% endfor %}<span>{% for link_hash in site.links %}{% for link in link_hash %}<a href="{{ link[1] }}"><i class="fa fa-{{ link[0] }}-square"></i></a>{% endfor %}{% endfor %}</span>
         </ul>
       </nav>
     </header>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Niklas Buschmann 2015 MIT <http://github.com/niklasbuschmann> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Machine Learning on a Budget">
+    <title> Machine Learning on $10 a Day › Subtle Gears</title>
+    <link rel="canonical" href="http://uglyboxer.github.io/2015/10/01/machine-learning.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <script src="//uglyboxer.disqus.com/embed.js" async></script>
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Subtle Gears</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/archive.html">Archive</a></li><span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/2015/10/01/machine-learning.html">Machine Learning on $10 a Day</a></h2>
+        <p><time datetime="2015-10-01T00:00:00-07:00">Oct 1, 2015</time> • </p>
+      </header>
+      <div>
+<p>Initial foray into machine learning was an implementation of a basic Perceptron (image) on the Handwritten Digits sets from <a href="http://scikit-learn.org">scikit-learn</a>.  The 8x8 pixel images in grayscale number 1797, and have been adjusted for skewing.</p>
+
+<p><a href="http://scikit-learn.org"><img src="/images/digits.png" alt="Handwritten digits" /></a><em>from scikit-learn</em></p>
+
+<!--more-->
+
+<p>The first completed test resulted in a 75% success rate on guessing the correct value of image from the set of data the trained algorithm had not seen.  Adjusting the hyperparameters, it turned out that with this model, it was over-fitting the data and adjusting the number of training cases down, was inversely proportional to the success rate.  The sweet spot seemed to be around 950 training cases and leaving the 1200 for the guessing. 
+   The next hyperparmeter tackled was the number of epochs to run during the learning phase.  Again this turned out to be an inverse relationship with the success ratio after a certain point.  And the sweet spot settled around 250 epochs.  This, of course, introduced my laptop to demands it had never faced and is painting the next adventure in this journey, analysing the performance of the script to find efficiencies (but that is for tomorrow).
+     Now with the success rate well into the low 80’s, I moved into a dimension on the perceptron and rewrote the decision function, to a logistic function.</p>
+
+<p><img src="/images/step.png" alt="Step Function" /><img src="/images/sigmoid.jpg" alt="Sigmoid Function" /></p>
+
+<p>By having a more specific error in each neuron of the net, we are able to generate the error across the entire net at each epoch and further refine the weight matrix on each neuron by a “universal” error adjustment attained from a modified gradient descent function.</p>
+
+<p><img src="/images/gradient.png" alt="Gradient Descent" /></p>
+
+<p>This brought the success rate up to 92%.  But this is when <a href="https://thundershiviah.github.io">Thunder</a> (my mentor in this entire process) asked about validation of the data.  ACK! What’s that, okay, okay, I’ll do it.  A quick hack and slash on the dataset and voilá a second bit of data (really just peeled of the end of the original set), and away the run goes again.  But wait!  This is weird.  The main test set comes back with a 94% success rate.  And the validation set? … 88%  Wait, what?  Okay, so something is radically different in that final chunk of data.  A quick spin through scikit-learn at Thunder’s advice, and I come up with utils.resample() a method that reshuffles the data, but allows for one to maintain the relationships of the internal data.  Voilá, part deux, new data set.  And away we go again.  95%+ !! on both the test set and the validation set.  I’m going to call that a win.  Thanks and good night.  No really, I’ll be here all week.  Now to make my chicken scratch legible.</p>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+
+    <footer>
+      <span><a href="http://uglyboxer.github.io">Cole Howard</a></span>
+      <span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+      <span>&copy; 2015</span>
+    </footer>
+  </body>
+</html>

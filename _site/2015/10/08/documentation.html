@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Niklas Buschmann 2015 MIT <http://github.com/niklasbuschmann> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Machine Learning on a Budget">
+    <title> The Jungle of Documentation › Subtle Gears</title>
+    <link rel="canonical" href="http://uglyboxer.github.io/2015/10/08/documentation.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+    <script src="//uglyboxer.disqus.com/embed.js" async></script>
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Subtle Gears</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/archive.html">Archive</a></li><span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+        </ul>
+      </nav>
+    </header>
+    
+    
+    <article>
+      <header>
+        <h2><a href="/2015/10/08/documentation.html">The Jungle of Documentation</a></h2>
+        <p><time datetime="2015-10-08T00:00:00-07:00">Oct 8, 2015</time> • </p>
+      </header>
+      <div>
+<p>Project, check.  Splash page for project, check (thank you, gh-pages).  Documentation, in case someone want to use this thing, …  Well I’ve got docstrings, that’s good enough, right?  Not so, say they, what hold sway.</p>
+
+<!--more-->
+
+<p>But they quickly take pitty on me and reveal the wonder of <a href="http://sphinx-doc.org/">Sphinx</a>.  Just a few quick keystrokes and voila, you have a set of documentation.  Well maybe a more than a few.  But it did arrive pretty, I will give it that.</p>
+
+<p>So, documentation, hot off the presses, let’s land it on GitHub.  No problem a little add, here, a little push there and up it goes.  And … broke.   No pretty!</p>
+
+<p>Whahhapen?  Let’s see let’s just rebuild it.  Now that won’t work!  Sheesh!  (Operator error of course, but my mistake wasn’t clear for some time.)  Finally after divining into the depths of the conf.py and index.rst pages, I was able to recreate the docs.  Not exactly beautiful, but definitely readable, and certainly more than one may expect for an auto-generating script.  Special thanks to <a href="https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/">Code and Chaos</a> for finally breaking my mental ice.  Not as simple as I at first imagined. (I’m sure there is a tool out there to make this better, but that is for another day.)</p>
+
+<p>Then, back to the task at hand, up to the gh-pages servers.  Whoa, broke.  No pretty.  A little more research and … it seems Jekyll breaks the Sphinx renders.  No problem, I’ll just kill Jekyll on that page (which is a subpage of the gh-pages for the project).  Not so fast buddy, that is not how Jekyll works.   It is for your pages or not all, you don’t get to mix and match sadly.</p>
+
+<p>Hmmm. Decision time, do I tank the autogen for the project page in favor of a static website created from scratch?  Or do I host the docs somewhere else?</p>
+
+<p>Not excited about divert back to the front end and this point in my studies, I opted for hosting them elsewhere.  I did come across tools that bridge the Jekyll-Sphinx divide, but what can of worms will that be?  Eager to move on to the next project with a process in hand … I jumped at <a href="https://github.com/ThunderShiviah">Thunder</a>’s suggestion of <a href="http://readthedocs.org">Read the Docs</a>.  Sweet, host there, then a quick link from the gh-pages and I’m done.  Not so fast.</p>
+
+<p>(pause for a face-palm)</p>
+
+<p>Page builds locally just fine.  But, Read the Docs, still says ‘no bueno’.  Back to the drawing board.</p>
+
+<p>This is turned out, is a simple fix.  Read the Docs will not properly build docs for a script that imports third party libraries, more details <a href="http://blog.rtwilson.com/how-to-make-your-sphinx-documentation-compile-with-readthedocs-when-youre-using-numpy-and-scipy/">here</a>.  So with one final tweak.  Up in all <a href="https://linear-neuron.readthedocs.org/en/latest/">their</a> glory (or not, but up at least).</p>
+
+<p>Phew, I’m going to bed.  Maybe, I’ll make them pretty tomorrow.</p>
+
+<p>p.s.  Let’s not do it that way again, I vote for skipping all the research next time, and just getting it done.  Happy documenting!</p>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+
+    <footer>
+      <span><a href="http://uglyboxer.github.io">Cole Howard</a></span>
+      <span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+      <span>&copy; 2015</span>
+    </footer>
+  </body>
+</html>
