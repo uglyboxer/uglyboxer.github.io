@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Nice, Neat Rows
 tags:
 - Neural Net

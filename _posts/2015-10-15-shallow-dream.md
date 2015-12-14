@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Shallow Dream
 tags:
 - Machine Learning

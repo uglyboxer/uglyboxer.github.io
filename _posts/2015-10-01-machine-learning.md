@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Machine Learning on $10 a Day
 tags:
 - Machine Learning

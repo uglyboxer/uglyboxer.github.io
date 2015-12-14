@@ -1,5 +1,4 @@
 ---
-layout: post
 title: Speed at a Cost
 tags:
 - Machine Learning

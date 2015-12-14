@@ -1,5 +1,4 @@
 ---
-layout: post
 title: The Jungle of Documentation
 tags:
 - Sphinx
