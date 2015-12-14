@@ -10,6 +10,8 @@ comments:
     disqus: "uglyboxer"
 #    isso: "comments.mysite.org"
 
+excerpt_separator: <!--more-->
+
 style:
 #    body: "whitesmoke"
     padding: 33%

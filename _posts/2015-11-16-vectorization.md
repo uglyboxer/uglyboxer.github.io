@@ -18,6 +18,8 @@ Repeat.
 
 (head slap)
 
+<!--more-->
+
 But, to give this post a point, I did come away with something more than the oh-so-obvious (but oh-so-important) advice above.  Where did it begin?  My original code was full of nested for loops in the brute force pursuit of updating each weight on the atomic level.  Backpropagation is a serious business and there isn't much time for messing around, let's update each weight individually.
 
 {% highlight python %}
