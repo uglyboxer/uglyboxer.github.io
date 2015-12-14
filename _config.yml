@@ -4,7 +4,7 @@ description: "Machine Learning on a Budget"
 #subheading: "Really cool blog about ... something"
 more: "read more"
 url: "http://uglyboxer.github.io"
-baseurl: "" # comment out if in root directory
+baseurl:  # comment out if in root directory
 
 comments:
     disqus: "uglyboxer"
