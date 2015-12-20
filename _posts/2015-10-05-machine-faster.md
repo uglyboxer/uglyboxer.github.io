@@ -14,7 +14,6 @@ Okay, that is getting lame.
 
 Running 1000 input vectors through ten neurons hundreds of time with hundreds of calculations each time, to verify the code is functional, turns out to take some bit of time.
 
-<!--more-->
 
 So where is all the time going?  I imported cProfiler to find the cycle hog.  And lo and behold the dot product function, multiplying the input vector by the weight vector, over and over.  Since we are living under the GIL and only one thing can happen at a time, which makes the script a huge long queue.  Since other languages aren't restricted by this, let's look toward them for a little help.
 

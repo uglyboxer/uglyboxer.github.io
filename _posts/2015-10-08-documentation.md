@@ -9,7 +9,6 @@ tags:
 
 Project, check.  Splash page for project, check (thank you, gh-pages).  Documentation, in case someone want to use this thing, ...  Well I've got docstrings, that's good enough, right?  Not so, say they, what hold sway.
 
-<!--more-->
 
 But they quickly take pitty on me and reveal the wonder of [Sphinx](http://sphinx-doc.org/).  Just a few quick keystrokes and voila, you have a set of documentation.  Well maybe a more than a few.  But it did arrive pretty, I will give it that.  
 

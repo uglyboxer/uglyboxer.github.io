@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Niklas Buschmann 2015 MIT <http://github.com/niklasbuschmann> -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="utf-8">
+    
+    <meta name="description" content="Machine Learning on a Budget">
+    <title> Binomial Bottleneck › Subtle Gears</title>
+    <link rel="canonical" href="http://uglyboxer.github.io/2015/12/20/binomial.html">
+    <link href="/main.css" rel="stylesheet" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Source+Sans+Pro:200,300,400,600,700,200italic,300italic,400italic,600italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Gentium+Basic:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+    <link href='//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css' rel='stylesheet' type='text/css'>
+
+    <script src="//uglyboxer.disqus.com/embed.js" async></script>
+    
+  </head>
+  <body>
+    <header>
+      <h1><a href="/">Subtle Gears</a></h1>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li><li><a href="/archive.html">Archive</a></li>
+        </ul>
+      </nav>
+    </header>
+    
+    <div>Machine Learning on a Budget</div>
+    <article>
+      <header>
+        <h2><a href="/2015/12/20/binomial.html">Binomial Bottleneck</a></h2>
+        <p><time datetime="2015-12-20T00:00:00-08:00">Dec 20, 2015</time> • </p>
+      </header>
+      <div>
+<p>Neural Net Architecture is not a playground for those that demand instant gratification.  The endless trials with slight variations of one parameter or another (made ever so much worse when you don’t take rigorous notes, <em>head slap</em>) provide feedback only when they are good and ready.  So it is much like watching water boil.  While we’re waiting.  Lets break out Python’s cProfile and see what is going on under the hood, just to pass the time, of course.</p>
+
+<figure class="highlight"><pre><code class="language-bash" data-lang="bash">   ncalls  tottime  percall  cumtime  percall filename:lineno<span class="o">(</span><span class="k">function</span><span class="o">)</span>
+   529200 5912.656    0.011 5945.037    0.011 <span class="o">{</span>method <span class="s1">'binomial'</span> of <span class="s1">'mtrand.RandomState'</span> objects<span class="o">}</span>
+  1075196 1768.545    0.002 8431.153    0.008 layer.py:53<span class="o">(</span>_vector_pass<span class="o">)</span>
+  1058400  589.529    0.001  766.941    0.001 layer.py:124<span class="o">(</span>_update_weights<span class="o">)</span>
+  1075196  462.097    0.000  462.097    0.000 <span class="o">{</span>built-in method numpy.core.multiarray.dot<span class="o">}</span>
+  1058400  171.428    0.000  177.412    0.000 numeric.py:1003<span class="o">(</span>outer<span class="o">)</span>
+  6932145  156.128    0.000  156.128    0.000 <span class="o">{</span>built-in method numpy.core.multiarray.array<span class="o">}</span>
+   529200  126.677    0.000  126.677    0.000 <span class="o">{</span>built-in method numpy.core.multiarray.copyto<span class="o">}</span>
+  3185634   33.730    0.000   33.730    0.000 <span class="o">{</span>method <span class="s1">'reduce'</span> of <span class="s1">'numpy.ufunc'</span> objects<span class="o">}</span>
+   537598   10.852    0.000   57.246    0.000 data.py:563<span class="o">(</span>normalize<span class="o">)</span>
+  1058400   10.728    0.000   17.094    0.000 layer.py:96<span class="o">(</span>_layer_level_backprop<span class="o">)</span></code></pre></figure>
+
+<p>That’s a lot of time to be spending with the binomial method.  Now something suddenly makes sense.  Several weeks ago in early testing on AWS there seemed to be little difference between training on a CPU optimized instance and a GPU optimized one.  That in itself did not seem to surprising as there isn’t much in a neural net that lends itself to parallelization.  The backpropogation at any given point depeneds entirely on every calculation that comes before it.</p>
+
+<p>However, in a recent of fit watching the water boil, I splurged and gave the GPU another go, this time with an identical architecture to one running on the CPU opt. instance. And magically … a 10-fold increase!  What changed?  Aha!  During the first look at GPU’s I was testing regularization (so I had neuron dropout turn off) to prevent overfitting.  But since then I had gone back to dropout experiments (and hence regularization) turned off.</p>
+
+<p>So what does binomial have to do with all this?  That is the function that creates the random mask over the neurons to turn some of them off for a particular pass.  This however is something that can be parallelized.  Of course, the GPU will be making hay with this.  Now I just need to decide if dropout is worth that much time.  Heh, I guess that’s what bigger computers are for.</p>
+
+<p>Thanks <a href="http://hobsonlane.com/">Hobson</a> for the insight on this one.</p>
+
+<p>Happy learning!</p>
+
+      </div>
+      
+      
+      <div id="disqus_thread"></div>
+      <a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+      
+    </article>
+
+    <footer>
+      <span><a href="http://uglyboxer.github.io">Cole Howard</a></span>
+      <span><a href="https://github.com/uglyboxer/"><i class="fa fa-github-square"></i></a><a href="https://twitter.com/uglyboxer/"><i class="fa fa-twitter-square"></i></a><a href="https://plus.google.com/+uglyboxer"><i class="fa fa-google-plus-square"></i></a></span>
+      <span>&copy; 2015</span>
+    </footer>
+  </body>
+</html>

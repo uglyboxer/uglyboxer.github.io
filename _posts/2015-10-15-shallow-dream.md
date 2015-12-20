@@ -11,7 +11,6 @@ So far, this experiment has yielded one major take away: **_I need more tools!_*
 
 Based on the very broad concept behind [Google's Deep Dream project](http://deepdreamgenerator.com/), [Thunder](https://github.com/ThunderShiviah) wondered what it was my little pet Perceptron had actually learned. Seemed an innocent enough quesion.  
 
-<!--more-->
 
 First step involved backing up a bit and polishing some of the project's rougher edges. I needed a visualization of the input and output.  [Matplotlib](http://matplotlib.org/) was the easy answer, especially since it was all over [SciKit-learn](http://scikit-learn.org/stable/index.html) in the first place.  And voilá.
 

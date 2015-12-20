@@ -10,7 +10,7 @@ comments:
     disqus: "uglyboxer"
 #    isso: "comments.mysite.org"
 
-excerpt_separator: <!--more-->
+
 
 style:
 #    body: "whitesmoke"
@@ -34,4 +34,5 @@ paginate: 10
 excerpt_separator: "\n\n\n" # excerpt ends after two blank lines
 defaults: [{scope: {path: ""}, values: {layout: "default"}}, {scope: {path: "", type: "posts"}, values: {comments: true}}]
 gems: [jekyll-feed] # include feed plugin (supported by gh-pages)
+gems: [jekyll-paginate]
 
