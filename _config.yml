@@ -1,7 +1,7 @@
 title: "Subtle Gears"
 author: "Cole Howard"
 description: "Machine Learning on a Budget"
-subheading: "Machine Learning on a Budget"
+# subheading: "Machine Learning on a Budget"
 more: "read more"
 url: "http://uglyboxer.github.io"
 baseurl:  # comment out if in root directory
