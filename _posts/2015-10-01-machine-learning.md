@@ -1,6 +1,6 @@
 ---
 title: Machine Learning on $10 a Day
-tags:
+categories:
 - Machine Learning
 - Perceptron
 - Python
