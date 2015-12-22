@@ -1,6 +1,6 @@
 ---
 title: Shallow Dream
-tags:
+categories:
 - Machine Learning
 - Perceptron
 - Python

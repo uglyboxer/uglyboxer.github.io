@@ -1,6 +1,6 @@
 ---
 title: The Jungle of Documentation
-tags:
+categories:
 - Sphinx
 - ReadtheDocs
 - Documentation 

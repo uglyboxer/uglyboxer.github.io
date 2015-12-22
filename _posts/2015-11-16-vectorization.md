@@ -1,6 +1,6 @@
 ---
 title: Nice, Neat Rows
-tags:
+categories:
 - Neural Net
 - Vectorization
 - Linear Algebra

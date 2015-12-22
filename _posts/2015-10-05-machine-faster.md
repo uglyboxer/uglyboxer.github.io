@@ -1,6 +1,6 @@
 ---
 title: Speed at a Cost
-tags:
+categories:
 - Machine Learning
 - Efficiency
 - Python
