@@ -10,6 +10,8 @@ categories:
 Project, check.  Splash page for project, check (thank you, gh-pages).  Documentation, in case someone want to use this thing, ...  Well I've got docstrings, that's good enough, right?  Not so, say they, what hold sway.
 
 
+[tl;dr](#tldr)
+
 But they quickly take pitty on me and reveal the wonder of [Sphinx](http://sphinx-doc.org/).  Just a few quick keystrokes and voila, you have a set of documentation.  Well maybe a more than a few.  But it did arrive pretty, I will give it that.  
 
 So, documentation, hot off the presses, let's land it on GitHub.  No problem a little add, here, a little push there and up it goes.  And ... broke.   No pretty!
@@ -31,3 +33,9 @@ This is turned out, is a simple fix.  Read the Docs will not properly build docs
 Phew, I'm going to bed.  Maybe, I'll make them pretty tomorrow.
 
 p.s.  Let's not do it that way again, I vote for skipping all the research next time, and just getting it done.  Happy documenting!
+
+<a name='tldr'></a>UPDATE (1/2/16):  Face-palm time.  Okay, maybe it wasn't there before, but there is box to tick in the (Read the Docs)[https://readthedocs.org/] admin/advanced settings for your build.  It says:  Give the virtual environment access to the global site-packages dir.
+
+Numpy and scipy seem to be living here.  Tick that and ignore the paragraphs of nonsense above.  Sheesh. 
+
+
