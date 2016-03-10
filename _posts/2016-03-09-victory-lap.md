@@ -22,7 +22,7 @@ While [Finnegan](http://uglyboxer.github.io/capstone/) was built from the ground
 
 Theano can be a bit cumbersome though, so again, community to the rescue, I cracked open [Keras](http://keras.io/).  A wrapper for Theano to make building a model as simple as stacking a sandwich. 
 
-{% highlight python %}
+```
 model = Sequential()
 
 model.add(Convolution2D(20, nb_conv, nb_conv,
@@ -45,7 +45,7 @@ model.add(Activation('softmax'))
 EarlyStopping(monitor='val_loss')
 
 model.compile(loss='categorical_crossentropy', optimizer='adadelta')
-{% end highlight %}
+```
 
 A couple of convolutional pieces of ham, a topping of fully-connected forward piece of cheese and out came a model.  Straight to 97% accurate on Kaggle.  Better, but still nothing to write home about.  So where to look next?  The data itself!  Convolutional Nets by design are robust to perturbations in the data, so let's perturb it!
 
@@ -59,7 +59,7 @@ A few weeks go by and my friend [Hannes](http://hanneshapke.github.io/) and I ar
 
 After the class was over and had this handy dandy tool, I decided to dust off the AffNIST and give it another go.  
 
-{% hightlight python %}
+```
 def CNN(n_epochs):
     net1 = NeuralNet(
         layers=[
@@ -98,13 +98,13 @@ def CNN(n_epochs):
     return net1
 print(test.shape)
 cnn = CNN(10).fit(train,target) 
-{% end hightlight %}
+```
 
 Two important things.  *NORMALIZE* the data.  And don't forget the set Theano flags to use the gpu:
 
-{% highlight bash %}
-THEANO_FLAGS='floatX=float32,device=gpu0,lib.cnmem=1'  python <myscript>.py
-{% end highlight %}
+```
+$ THEANO_FLAGS='floatX=float32,device=gpu0,lib.cnmem=1'  python <myscript>.py
+```
 
 I won't pretend that it worked straight out of the box, but it worked on the second try (once I padded the test set in the right order).  It worked.  And way better than I hoped.  99.22%.  Not state of the art, but I'm gonna call it a win.
 
