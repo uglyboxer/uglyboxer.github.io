@@ -35,5 +35,8 @@ excerpt_separator: "\n\n\n" # excerpt ends after two blank lines
 defaults: [{scope: {path: ""}, values: {layout: "default"}}, {scope: {path: "", type: "posts"}, values: {comments: true}}]
 # gems: [jekyll-feed] # include feed plugin (supported by gh-pages)
 # gems: [jekyll-paginate]
-highlighter: rouge
+markdown: kramdown
 
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge

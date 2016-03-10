@@ -22,7 +22,7 @@ While [Finnegan](http://uglyboxer.github.io/capstone/) was built from the ground
 
 Theano can be a bit cumbersome though, so again, community to the rescue, I cracked open [Keras](http://keras.io/).  A wrapper for Theano to make building a model as simple as stacking a sandwich. 
 
-```
+``` py
 model = Sequential()
 
 model.add(Convolution2D(20, nb_conv, nb_conv,
@@ -60,7 +60,7 @@ A few weeks go by and my friend [Hannes](http://hanneshapke.github.io/) and I ar
 
 After the class was over and had this handy dandy tool, I decided to dust off the AffNIST and give it another go.  
 
-```
+``` py
 def CNN(n_epochs):
     net1 = NeuralNet(
         layers=[
