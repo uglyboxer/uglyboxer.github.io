@@ -9,7 +9,7 @@ categories:
 - Kaggle
 ---
 
-![Kaggle Leaderboard](images/kaggle_leader.png)
+![Kaggle Leaderboard](/images/kaggle_leader.png)
 
 This took longer than it should have.  And though this is an already "won" race, I'm going to take a moment to enjoy this and celebrate by ... moving on.  While I did find the result I was looking for, it came in about around a mystery that I never solved.
 

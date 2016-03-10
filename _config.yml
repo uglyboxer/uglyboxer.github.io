@@ -4,7 +4,7 @@ description: "Machine Learning on a Budget"
 # subheading: "Machine Learning on a Budget"
 more: "read more"
 url: "http://uglyboxer.github.io"
-baseurl:  # comment out if in root directory
+# baseurl:  # comment out if in root directory
 
 comments:
     disqus: "uglyboxer"
@@ -33,6 +33,6 @@ links:
 paginate: 10
 excerpt_separator: "\n\n\n" # excerpt ends after two blank lines
 defaults: [{scope: {path: ""}, values: {layout: "default"}}, {scope: {path: "", type: "posts"}, values: {comments: true}}]
-gems: [jekyll-feed] # include feed plugin (supported by gh-pages)
-gems: [jekyll-paginate]
+# gems: [jekyll-feed] # include feed plugin (supported by gh-pages)
+# gems: [jekyll-paginate]
 
