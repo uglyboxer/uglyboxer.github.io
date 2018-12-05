@@ -18,6 +18,6 @@ There are plenty of places to hide in a conference hall.  I've chosen my spot.
 ![Empty Hallway](/images/hallway.JPG)
 It's okay.  You'll miss something.  You would miss something if you were on the floor talking to somebody right this moment.  But there is value in pausing.  Give you brain a moment to parse some of what you've learned.  Drop down and try out some of the code floating around the conference.  There certainly is no shortage of it.
 
-A quiet retreat during the day does wonders for your ability to dive back into the confernce and soak up everything you can for the rest of the day.  Rinse and repeat tomorrow.  
+A quiet retreat during the day does wonders for your ability to dive back into the confernce and soak up everything you can for the rest of the day.  Rinse and repeat tomorrow.
 
 Happy conferencing!
